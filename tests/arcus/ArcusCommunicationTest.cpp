@@ -109,13 +109,6 @@ TEST_F(ArcusCommunicationTest, IsSequential)
     EXPECT_FALSE(ac->isSequential());
 }
 
-TEST_F(ArcusCommunicationTest, HasSlice)
-{
-    EXPECT_TRUE(ac->hasSlice());
-    ac->private_data->slice_count = 1;
-    EXPECT_FALSE(ac->hasSlice()) << "Can't slice more than once.";
-}
-
 TEST_F(ArcusCommunicationTest, SendGCodePrefix)
 {
     const std::string& prefix = "bladibla";
