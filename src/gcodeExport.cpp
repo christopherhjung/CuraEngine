@@ -1122,9 +1122,9 @@ void GCodeExport::switchExtruder(size_t new_extruder, const RetractionConfig& re
 
 void GCodeExport::writeCode(const char* str)
 {
-    regex_replace(str, std::regex("\\{(.+?)\\}"), [&](const std::smatch& m){
+    *output_stream << regex_replace(str, std::regex("\\{(.+?)\\}"), [&](const std::smatch& m){
         return Application::getInstance().current_slice->scene.extruders[current_extruder].settings.get<std::string>(m.str(1));
-    });
+    }) << new_line;
 }
 
 void GCodeExport::writePrimeTrain(const Velocity& travel_speed)
